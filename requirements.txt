@@ -1,1 +1,2 @@
-Flask
+Flask==0.11.1
+reverse-geocoder==1.5.1
