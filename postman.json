@@ -3,7 +3,7 @@
 	"info": {
 		"name": "MSA-GEOCODER",
 		"_postman_id": "57e9e4dd-3390-fa9c-a290-3dccb41d08e8",
-		"description": "Geohashing as a service",
+		"description": "Simple reverse geocoding service.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [

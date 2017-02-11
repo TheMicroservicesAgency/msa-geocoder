@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "MSA-GEOCODER",
-        "description": "Geohashing as a service",
+        "description": "Simple reverse geocoding service.",
         "version": "1.0.0"
     },
     "produces": [
