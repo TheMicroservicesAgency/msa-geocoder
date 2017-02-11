@@ -10,6 +10,6 @@ docker build -t msagency/$NAME:$VERSION . | tee last_docker_build.out
 CONTAINER_ID=`cat last_docker_build.out | grep "Successfully built" | cut -d ' ' -f 3`
 rm last_docker_build.out
 
-echo "docker run -ti -p 8080:80 $CONTAINER_ID"
+echo "docker run -ti -p 9908:80 $CONTAINER_ID"
 echo "..."
-docker run -ti -p 8080:80 $CONTAINER_ID
+docker run -ti -p 9908:80 $CONTAINER_ID

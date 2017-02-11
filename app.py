@@ -39,7 +39,8 @@ def reverse_geocode():
     coordinates = (lat, lon)
     results = rg.search(coordinates)
 
-    response = jsonify(results)
+    # Should only have one result
+    response = jsonify(results[0])
     return response
 
 
@@ -60,7 +61,8 @@ def reverse_geocode_from_geojson():
             coordinates = (lat, lon)
             results = rg.search(coordinates)
 
-            response = jsonify(results)
+            # Should only have one result
+            response = jsonify(results[0])
             return response
 
         else:

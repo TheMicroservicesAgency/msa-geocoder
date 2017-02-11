@@ -1,18 +1,221 @@
 {
     "swagger": "2.0",
     "info": {
-        "version": "1.0.0",
-        "title": "msa-geocoder",
-        "description": "An exmple of a simple Python microservice"
+        "title": "MSA-GEOCODER",
+        "description": "Geohashing as a service",
+        "version": "1.0.0"
     },
+    "produces": [
+        "application/json"
+    ],
     "paths": {
-        "/hello-world": {
+        "/ms/version": {
             "get": {
-                "description": "Returns \"Hello world\"\n",
+                "tags": [
+                    "msa-standard"
+                ],
+                "summary": "Return the microservice version number",
                 "responses": {
                     "200": {
-                        "description": "Successful response"
+                        "description": "the version number"
                     }
+                }
+            }
+        },
+        "/ms/name": {
+            "get": {
+                "tags": [
+                    "msa-standard"
+                ],
+                "summary": "Return the microservice name",
+                "responses": {
+                    "200": {
+                        "description": "the name"
+                    }
+                }
+            }
+        },
+        "/ms/readme.md": {
+            "get": {
+                "tags": [
+                    "msa-standard"
+                ],
+                "summary": "Return the microservice readme in markdown",
+                "responses": {
+                    "200": {
+                        "description": "the readme in markdown"
+                    }
+                }
+            }
+        },
+        "/ms/readme.html": {
+            "get": {
+                "tags": [
+                    "msa-standard"
+                ],
+                "summary": "Return the microservice readme in html",
+                "responses": {
+                    "200": {
+                        "description": "the readme in html"
+                    }
+                }
+            }
+        },
+        "/swagger/swagger.json": {
+            "get": {
+                "tags": [
+                    "msa-standard"
+                ],
+                "summary": "Return the microservice Swagger JSON file",
+                "responses": {
+                    "200": {
+                        "description": "the Swagger JSON file"
+                    }
+                }
+            }
+        },
+        "/swagger/#": {
+            "get": {
+                "tags": [
+                    "msa-standard"
+                ],
+                "summary": "Return the Swagger-UI page",
+                "responses": {
+                    "200": {
+                        "description": "the Swagger-UI page"
+                    }
+                }
+            }
+        },
+        "/nginx/stats.json": {
+            "get": {
+                "tags": [
+                    "msa-standard"
+                ],
+                "summary": "Return stats about Nginx in JSON",
+                "responses": {
+                    "200": {
+                        "description": "the stats about Nginx in JSON"
+                    }
+                }
+            }
+        },
+        "/nginx/stats.html": {
+            "get": {
+                "tags": [
+                    "msa-standard"
+                ],
+                "summary": "Return a dashboard displaying the stats from Nginx",
+                "responses": {
+                    "200": {
+                        "description": "the Nginx stats dashboard"
+                    }
+                }
+            }
+        },
+        "/geocoder": {
+            "get": {
+                "tags": [
+                    "msa-geocoder"
+                ],
+                "summary": "Find the country, state and closest city for a given latitude, longitude",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "the latitude, ex \"45.536175\"",
+                        "required": true,
+                        "type": "number"
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "description": "the longitude, ex \"-73.620758\"",
+                        "required": true,
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "one json document with the city, state and country",
+                        "schema": {
+                            "$ref": "#/definitions/Result"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "msa-geocoder"
+                ],
+                "summary": "Find the country, state and closest city for a given geojson Point",
+                "parameters": [
+                    {
+                        "name": "geojson point",
+                        "in": "body",
+                        "description": "a geojson point",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Point"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "one json document with the city, state and country",
+                        "schema": {
+                            "$ref": "#/definitions/Result"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Point": {
+            "type": "object",
+            "required": [
+                "type",
+                "coordinates"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "coordinates": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "Result": {
+            "type": "object",
+            "properties": {
+                "admin1": {
+                    "description": "administrative region 1",
+                    "type": "string"
+                },
+                "admin2": {
+                    "description": "administrative region 2",
+                    "type": "string"
+                },
+                "cc": {
+                    "description": "ISO 3166-1 alpha-2 country code",
+                    "type": "string"
+                },
+                "lat": {
+                    "description": "latitude",
+                    "type": "string"
+                },
+                "lon": {
+                    "description": "longitude",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of place",
+                    "type": "string"
                 }
             }
         }
