@@ -1,19 +1,19 @@
 
 # msa-geocoder
 
-Example of a microservice written in Python, with the [Flask](http://flask.pocoo.org/docs/latest/quickstart/) framework.
+
 
 ## Quick start
 
 Execute the microservice container with the following command :
 
 ```
-docker run -ti -p 8080:80 msagency/msa-geocoder
+docker run -ti -p 9908:80 msagency/msa-geocoder
 ```
 
 ## Endpoints
 
-- [/hello-world](/hello-world) : returns {"message":"Hello, World !"}
+- [/geocoder](/geocoder) : returns 
 
 
 ## Standard endpoints
