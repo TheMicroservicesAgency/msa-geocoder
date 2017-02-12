@@ -3,7 +3,7 @@
 
 Reverse geocoding as a simple offline service.
 
-For a given latitude,longitude returns the matching country code, the administrative region and the name of the closest city (cities with population of 1000+, data from the [GeoNames project](http://www.geonames.org/).
+For a given latitude,longitude returns the matching country code, the administrative region and the name of the closest city (cities with population of 1000+). Data from the [GeoNames project](http://www.geonames.org/).
 
 Built using [reverse-geocoder](https://github.com/thampiman/reverse-geocoder), an updated version of [reverse_geocode](https://pypi.python.org/pypi/reverse_geocode/1.0).
 
