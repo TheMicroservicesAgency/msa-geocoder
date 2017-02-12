@@ -3,19 +3,7 @@ FROM msagency/msa-image-python:1.0.2
 # Install the Python dependencies
 ADD requirements.txt /opt/ms/
 
-# Install the dependencies (extra steps required by numpy)
-# RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
-# RUN apk add --update gcc make musl-dev linux-headers g++ libc-dev python-dev
-# RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
-# RUN echo @community http://dl-cdn.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories
-# RUN echo @testing http://dl-cdn.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
-# # RUN apk add --update --no-cache py-numpy@community
-# RUN apk add --update gfortran
-# RUN apk add --update openblas@community
-# RUN apk add --update lapack@community
-# #RUN pip install -r /opt/ms/requirements.txt
-# RUN pip install numpy scipy
-
+# Installing scipy on alpine is more complicated than anticipated
 # from https://github.com/drillan/docker-alpine-scipy/blob/master/Dockerfile
 RUN apk update \
 && apk add \
@@ -52,14 +40,6 @@ RUN apk update \
 && apk del --purge -r build_dependencies \
 && rm -rf /tmp/build \
 && rm -rf /var/cache/apk/*
-
-# RUN apk add --update py-numpy@testing py-scipy@testing
-
-# RUN apk add --update gcc make musl-dev linux-headers g++ libc-dev python-dev py-scipy@testing py-numpy@testing \
-#     && ln -s /usr/include/locale.h /usr/include/xlocale.h \
-#     && pip install -r /opt/ms/requirements.txt \
-#     && apk del make libc-dev python-dev \
-#     && rm -rf /tmp/* /var/cache/apk/*
 
 # Override the default endpoints
 ADD README.md NAME LICENSE VERSION /opt/ms/
